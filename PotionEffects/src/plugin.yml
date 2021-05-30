@@ -1,0 +1,10 @@
+main: me.blume.potioneffects.Main
+name: PotionEffects
+author: Blume
+version: 1.0
+api-version: 1.16
+
+commands:
+  killerpotion:
+  killerpotionremove:
+  
