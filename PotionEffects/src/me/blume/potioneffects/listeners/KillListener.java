@@ -14,6 +14,21 @@ public class KillListener implements Listener{
 	public KillListener(Main plugin) {
 		this.plugin=plugin;
 	}
+	PotionEffectType[] potions = {PotionEffectType.DOLPHINS_GRACE,PotionEffectType.SPEED,PotionEffectType.REGENERATION,
+			PotionEffectType.FAST_DIGGING,PotionEffectType.INCREASE_DAMAGE,PotionEffectType.FIRE_RESISTANCE,PotionEffectType.WATER_BREATHING,
+			PotionEffectType.INVISIBILITY};
+	public void addPotions(Player player,int level,int time) {
+		if(level< potions.length) {
+			for(int i =0;i<level;i++) {
+				player.addPotionEffect(new PotionEffect(potions[i],time*20,level));
+			}
+		}
+		else {
+			for(int i=0;i<potions.length;i++) {
+				player.addPotionEffect(new PotionEffect(potions[i],time*20,level));
+			}
+		}
+	}
 	@EventHandler
 	public void onKillEvent(PlayerDeathEvent event) {
 		Player killer = event.getEntity().getKiller();
@@ -23,71 +38,10 @@ public class KillListener implements Listener{
 				plugin.getConfig().set("KillCount", (plugin.getConfig().getInt("KillCount"))+1);
 				plugin.getConfig().set("DurationTime",(plugin.getConfig().getInt("DurationTime"))+20);
 				plugin.saveConfig();
-				if(plugin.getConfig().getInt("KillCount")==0) {
-					return;
-				}
-				if(plugin.getConfig().getInt("KillCount")==1) { killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,plugin.getConfig().getInt("KillCount")));
-				}
-				else if(plugin.getConfig().getInt("KillCount")==2) { killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,plugin.getConfig().getInt("KillCount")));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,1)); 
-				}
-				else if(plugin.getConfig().getInt("KillCount")==3) {killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,plugin.getConfig().getInt("KillCount")));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,1));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount")))); 
-				}
-				else if(plugin.getConfig().getInt("KillCount")==4) {killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,plugin.getConfig().getInt("KillCount")));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,1));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				}
-				else if(plugin.getConfig().getInt("KillCount")==5) {killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,2));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount")))); 
-				}
-				else if(plugin.getConfig().getInt("KillCount")==6) {killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,2));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				}
-				else if(plugin.getConfig().getInt("KillCount")==7) { killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,2));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				}
-				else if(plugin.getConfig().getInt("KillCount")==8) { killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,2));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				}
-				else if(plugin.getConfig().getInt("KillCount")==9) { killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,2));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				killer.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				}
-				else {
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,(plugin.getConfig().getInt("DurationTime"))*20,2));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-					killer.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY,(plugin.getConfig().getInt("DurationTime"))*20,(plugin.getConfig().getInt("KillCount"))));
-				}
+				addPotions(killer,plugin.getConfig().getInt("KillCount"),plugin.getConfig().getInt("DurationTime"));
 			}
 		}
+		
 	}
 }
 				
