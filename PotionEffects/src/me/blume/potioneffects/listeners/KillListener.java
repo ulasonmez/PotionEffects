@@ -20,11 +20,19 @@ public class KillListener implements Listener{
 	public void addPotions(Player player,int level,int time) {
 		if(level< potions.length) {
 			for(int i =0;i<level;i++) {
+				if(i==1) {
+					player.addPotionEffect(new PotionEffect(potions[i],time*20,1));
+					continue;
+				}
 				player.addPotionEffect(new PotionEffect(potions[i],time*20,level));
 			}
 		}
 		else {
 			for(int i=0;i<potions.length;i++) {
+				if(i==1) {
+					player.addPotionEffect(new PotionEffect(potions[i],time*20,1));
+					continue;
+				}
 				player.addPotionEffect(new PotionEffect(potions[i],time*20,level));
 			}
 		}
